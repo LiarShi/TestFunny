@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.liar.testcall">
+    <!-- 允许读取手机信息权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 写存储 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 读存储 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 允许开机自启动服务 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- app忽略电池优化 -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+
+    <!-- 拨打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name="com.liar.testcall.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name="com.liar.testcall.ui.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.liar.testcall.ui.MainActivity"></activity>
+
+        <!--一像素界面Activity -->
+        <activity
+            android:name="com.liar.testcall.keeplive.onepx.OnePxActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleInstance"
+            android:process=":main"
+            android:theme="@android:style/Theme.Translucent"
+            />
+
+        <!--开机自启动广播 -->
+        <receiver android:name="com.liar.testcall.receiver.BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </receiver>
+
+        <!--监听锁屏广播 -->
+        <receiver
+            android:name="com.liar.testcall.keeplive.onepx.ScreenReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":main">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.intent.action.SCREEN_ON"/>
+                <action android:name="android.intent.action.SCREEN_OFF"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- 服务 -->
+        <service
+            android:name="com.liar.testcall.service.MainService"
+            android:exported="false">
+
+        </service>
+        <service
+            android:name="com.liar.testcall.keeplive.timer.ScheduleService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+        </service>
+        <service
+            android:name="com.liar.testcall.keeplive.foreground.ChannelService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":main">
+        </service>
+
+        <receiver android:name="com.liar.testcall.utils.clock.LoongggAlarmReceiver">
+            <intent-filter>
+                <action android:name="com.liar.alarm.clock"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- 拨打电话服务 -->
+        <service
+            android:name="com.liar.testcall.service.CallService"
+            android:exported="false">
+
+        </service>
+    </application>
+
+</manifest>

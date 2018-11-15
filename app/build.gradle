@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.liar.testcall"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true// 启用dex分包
+
+    }
+
+    //日志开关
+    def LOG_DEBUG = "LOG_DEBUG"
+    defaultConfig {
+        buildConfigField "boolean", LOG_DEBUG, "true"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // 组件库
+    implementation 'cn.lodz:Component:1.5.7'
+    // butterknife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+
+    // 权限申请
+    implementation('com.github.hotchemi:permissionsdispatcher:3.3.1') {
+        exclude module: "support-v13"
+    }
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.3.1'
+
+    // 下载
+    implementation 'zlc.season:rxdownload3:1.2.2'
+
+    // butterknife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.bigkoo:pickerview:2.0.8'
+}
