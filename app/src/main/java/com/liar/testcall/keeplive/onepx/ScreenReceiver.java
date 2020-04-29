@@ -22,7 +22,6 @@ public class ScreenReceiver extends BroadcastReceiver {
     private static final String TAG = "ScreenReceiver";
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private CheckTopTask mCheckTopTask = new CheckTopTask(App.get());
-
     @Override
     public void onReceive(final Context context, Intent intent) {
         Log.d(TAG, "onReceive(): context = [" + context + "], intent = [" + intent + "]");

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#1A83D4</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
@@ -16,4 +16,9 @@
     <color name="color_4CCB88">#4CCB88</color>
     <color name="color_5a5a5a">#5a5a5a</color>
 
+
+    <color name="color_323232">#323232</color>
+    <color name="color_cecece">#cecece</color>
+    <color name="color_title">#1983d6</color>
+    <color name="color_activity_bg">#E7EBEE</color>
 </resources>

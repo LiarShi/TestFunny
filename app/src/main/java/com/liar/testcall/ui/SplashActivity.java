@@ -221,7 +221,7 @@ public class SplashActivity extends BaseActivity {
 //            finish();
 //
 //        }
-        MainActivity.start(getContext());
+        ChoseActivty.start(getContext());
         finish();
 //        SystemProperties.set("sys.boot_completed", "1");0默认 1可用 2禁止 3user disable
 //        ComponentName mComponentName = new ComponentName("com.snxun.fjyrydzgk","com.snxun.fjyrydzgk.receiver.BootBroadcastReceiver");

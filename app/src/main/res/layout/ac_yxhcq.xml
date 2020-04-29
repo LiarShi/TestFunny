@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_activity_bg"
+    android:orientation="vertical">
+
+    <com.liar.testcall.wigdet.CltEditTextView
+        android:id="@+id/ed_zt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentHint="营销号"
+        app:isRequired="true"
+        app:titleText="主体：" />
+
+    <com.liar.testcall.wigdet.CltEditTextView
+        android:id="@+id/ed_sj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentHint="是傻逼"
+        app:isRequired="true"
+        app:titleText="事件：" />
+
+    <com.liar.testcall.wigdet.CltEditTextView
+        android:id="@+id/ed_lyzsf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentHint="营销号很傻逼，所以是傻逼"
+        app:isRequired="true"
+        app:titleText="另一种说法：" />
+
+    <Button
+        android:id="@+id/btn_sc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/bg_corners_bar"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:text="生成"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <com.liar.testcall.wigdet.CltMultiEditTextView
+        android:id="@+id/ed_scnr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentHint="　　营销号是傻逼是怎么回事呢？营销号相信大家都很熟悉，但是营销号是傻逼是怎么回事呢，下面就让小编带大家一起了解吧。
+　　营销号是傻逼，其实就是营销号很傻逼，所以是傻逼，大家可能会很惊讶营销号怎么会是傻逼呢？但事实就是这样，小编也感到非常惊讶。
+　　这就是关于营销号是傻逼的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！"
+        app:isRequired="false"
+        app:titleText="生成内容：" />
+
+
+</LinearLayout>

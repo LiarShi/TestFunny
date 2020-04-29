@@ -31,7 +31,6 @@ public class OnePxActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "onCreate(): savedInstanceState = [" + savedInstanceState + "]");
-
         Log.e(TAG, "一像素界面启动:[" + savedInstanceState + "]");
         instance = new WeakReference<>(this);
         Window window = getWindow();
@@ -42,7 +41,6 @@ public class OnePxActivity extends Activity {
         attributes.height = 1;
         attributes.width = 1;
         window.setAttributes(attributes);
-
     }
 
     public static WeakReference<OnePxActivity> getInstance(){

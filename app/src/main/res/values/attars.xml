@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ExpandView">
+        <attr name="ev_title" format="string" />
+    </declare-styleable>
+    <declare-styleable name="ExpandProblemView">
+        <attr name="epv_title" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ExpandRepairView">
+        <attr name="erv_title" format="string" />
+    </declare-styleable>
+
+
+
+    <declare-styleable name="img_upload">
+
+        <attr name="img_just_take_photo" format="boolean" />
+        <attr name="img_num" format="integer" />
+        <attr name="img_type" format="string" />
+        <!--预览图片是否从网络获取-->
+        <attr name="img_from_net" format="boolean" />
+    </declare-styleable>
+
+
+    <!--采集展示控件-->
+    <attr name="titleText" format="string" />
+    <attr name="contentText" format="string" />
+    <attr name="isRequired" format="boolean" />
+    <attr name="isNeedUnit" format="boolean" />
+    <attr name="unitText" format="string" />
+    <attr name="isNeedJump" format="boolean" />
+    <attr name="jumpText" format="string" />
+    <attr name="contentHint" format="string" />
+
+
+
+    <declare-styleable name="CltEditTextView">
+        <attr name="isRequired" />
+        <attr name="titleText" />
+        <attr name="contentText" />
+        <attr name="contentHint" />
+        <attr name="inputType" format="integer">
+            <enum name="text" value="0" />
+            <enum name="idcard" value="1" />
+            <enum name="phone" value="2" />
+            <enum name="number" value="3" />
+            <enum name="numberDecimal" value="4" />
+            <enum name="foreignCert" value="5" />
+        </attr>
+        <attr name="isNeedUnit" />
+        <attr name="unitText" />
+        <attr name="unitDrawableEnd" format="reference" />
+        <attr name="isNeedJump" />
+        <attr name="jumpText" />
+        <attr name="maxLength" format="integer" />
+    </declare-styleable>
+
+
+    <declare-styleable name="CltMultiEditTextView">
+        <attr name="isRequired" />
+        <attr name="titleText" />
+        <attr name="contentHint" />
+        <attr name="count" format="integer" />
+        <!--最小高度-->
+        <attr name="minLines" format="integer" />
+
+    </declare-styleable>
+
+    <declare-styleable name="CltRadioBtn">
+        <attr name="isRequired" />
+        <attr name="titleText" />
+        <attr name="positiveText" format="string" />
+        <attr name="negativeText" format="string" />
+        <attr name="checkType" format="integer">
+            <enum name="none" value="0" />
+            <enum name="positive" value="1" />
+            <enum name="negative" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CountView">
+        <attr name="countNum" format="integer" />
+        <attr name="titleText" />
+        <attr name="maxValue" format="integer" />
+        <attr name="minValue" format="integer" />
+    </declare-styleable>
+
+    <item name="anim_icon" type="id"/>
+
+
+    <declare-styleable name="FjView">
+        <attr name="titleText" />
+    </declare-styleable>
+
+    <declare-styleable name="PdckView">
+        <attr name="isRequired" />
+    </declare-styleable>
+
+</resources>
