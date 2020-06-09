@@ -20,18 +20,26 @@ JAVA:
 
 /** 前台后台切换监听 */
 
-
 private void initAppStatusListener() {
+
     ForegroundCallbacks.init(this).addListener(new ForegroundCallbacks.Listener() {
+
         @Override
         public void onBecameForeground() {
+
             ToastUtils.showShort(get(),"++++App进入前台++++");
+
         }
+
         @Override
         public void onBecameBackground() {
+
             ToastUtils.showShort(get(),"----App退至后台----");
+
         }
+
     });
+
 }
 
 这个方法搬运了CSDN博主「火炎焱燚-」代码
