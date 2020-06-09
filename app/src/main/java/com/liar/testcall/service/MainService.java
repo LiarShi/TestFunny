@@ -21,10 +21,10 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.liar.testcall.R;
+import com.liar.testcall.config.Constants;
 import com.liar.testcall.config.NotifiConfig;
 import com.liar.testcall.keeplive.foreground.ChannelService;
 import com.liar.testcall.keeplive.timer.ScheduleService;
-import com.liar.testcall.ui.MainActivity;
 import com.liar.testcall.utils.sp.SpManager;
 import com.lodz.android.core.log.PrintLog;
 import com.lodz.android.core.utils.ParseUtils;
@@ -178,12 +178,12 @@ public class MainService extends Service {
     public void callPhone(String phoneNum) {
 
         //判断是否拨打电话
-        if(SpManager.get().getIS_CALL().equals(MainActivity.STOP_CALL)){
+        if(SpManager.get().getIS_CALL().equals(Constants.STOP_CALL)){
             executorService=null;
             return;
         }
         //判断是否处于定时拨打电话状态
-        if(SpManager.get().getCALL_MODE().equals(MainActivity.CALL_TIMER)){
+        if(SpManager.get().getCALL_MODE().equals(Constants.CALL_TIMER)){
             executorService=null;
             return;
         }
@@ -216,12 +216,12 @@ public class MainService extends Service {
     public void onDestroy() {
         super.onDestroy();
         //判断是否拨打电话
-        if(SpManager.get().getIS_CALL().equals(MainActivity.STOP_CALL)){
+        if(SpManager.get().getIS_CALL().equals(Constants.STOP_CALL)){
             executorService=null;
             return;
         }
         //判断是否处于定时拨打电话状态
-        if(SpManager.get().getCALL_MODE().equals(MainActivity.CALL_TIMER)){
+        if(SpManager.get().getCALL_MODE().equals(Constants.CALL_TIMER)){
             executorService=null;
             return;
         }

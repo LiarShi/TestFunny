@@ -41,6 +41,13 @@
 
         <activity android:name="com.liar.testcall.ui.MainActivity"></activity>
 
+        <!--广告Activity -->
+        <activity android:name="com.liar.testcall.ui.AdvertisementActivity"
+            android:launchMode="singleTask"
+            ></activity>
+
+
+
         <!--一像素界面Activity -->
         <activity
             android:name="com.liar.testcall.keeplive.onepx.OnePxActivity"

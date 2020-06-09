@@ -8,24 +8,29 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import androidx.multidex.MultiDex;
 
+import com.liar.testcall.config.Constants;
 import com.liar.testcall.config.NotifiConfig;
 import com.liar.testcall.keeplive.onepx.ScreenReceiver;
+import com.liar.testcall.ui.AdvertisementActivity;
 import com.liar.testcall.utils.ForegroundCallbacks;
+import com.liar.testcall.utils.sp.SpManager;
 import com.lodz.android.component.base.application.BaseApplication;
 import com.lodz.android.core.cache.ACacheUtils;
 import com.lodz.android.core.log.PrintLog;
 import com.lodz.android.core.network.NetworkManager;
 import com.lodz.android.core.utils.DensityUtils;
 import com.lodz.android.core.utils.NotificationUtils;
-import com.lodz.android.core.utils.ToastUtils;
 import com.lodz.android.core.utils.UiHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Administrator on 2018/8/20.
@@ -33,6 +38,14 @@ import java.util.List;
 public class App extends BaseApplication {
 
 
+    private boolean isShowAD;
+    private Timer timer;
+    //广告总时长
+    private long adTime=60;
+    //广告总时长
+    private long currentTime=0;
+    //更新UI循环时长
+    private long duration = 1000L;
 
     public static App getInstance() {
         return (App) get();
@@ -164,7 +177,6 @@ public class App extends BaseApplication {
     @Override
     protected void beforeExit() {
 
-
         UiHandler.destroy();
         NetworkManager.get().release(this);// 释放网络管理资源
         NetworkManager.get().clearNetworkListener();// 清除所有网络监听器
@@ -177,15 +189,56 @@ public class App extends BaseApplication {
         ForegroundCallbacks.init(this).addListener(new ForegroundCallbacks.Listener() {
             @Override
             public void onBecameForeground() {
-                ToastUtils.showShort(get(),"++++App进入前台++++");
+                Log.e("App",".initAppStatusListener.onBecameForeground():已切换到前台。");
+                if(SpManager.get().getIS_OPEN_AD().equals(Constants.OPEN_AD)) {
+                    //广告开启
+                    if(isShowAD){
+                        AdvertisementActivity.start(get());
+                    }
+                    stopTimer();
+                    isShowAD=false;
+                }
             }
 
             @Override
             public void onBecameBackground() {
-                ToastUtils.showShort(get(),"----App退至后台----");
+                Log.e("App",".initAppStatusListener.onBecameForeground():已切换到后台。");
+
+                if(SpManager.get().getIS_OPEN_AD().equals(Constants.OPEN_AD)) {
+                    //广告开启
+                    timer = new Timer();
+                    timer.scheduleAtFixedRate(new TimerTask() {
+                        @Override
+                        public void run() {
+                            currentTime = currentTime + 1;
+                            Log.e("App", "切换到后台第" + currentTime + "秒。");
+                            if (currentTime >= adTime) {
+                                Log.e("App", "切换后台时间大于等于弹广告的时间，计时停止");
+                                isShowAD = true;
+                                stopTimer();
+                            }
+                        }
+                    }, 1000, duration);
+                }
 
             }
         });
+    }
+
+    /**
+     * 停止计时
+     */
+    private void stopTimer() {
+        Log.e("App","stopTimer()触发");
+        if (timer != null) {
+            Log.e("App","timer不为空，停止计时");
+            timer.cancel();
+            timer.purge();
+            timer = null;
+        }else {
+            Log.e("App","timer为空，无需停止计时");
+        }
+        currentTime=0;
     }
 
 

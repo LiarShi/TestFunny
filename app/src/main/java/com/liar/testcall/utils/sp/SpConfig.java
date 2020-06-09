@@ -34,7 +34,13 @@ public class SpConfig {
     public static final String CALL_TIMER_TIME = "call_timer_time";
 
     /**
-     * 是否拨打 0拨打 1停止
-     */ //
+     * 是否拨打 0开启 1停止
+     */
     public static final String IS_CALL = "is_call";
+
+    /**
+     * 是否开启广告 0开启 1停止
+     */
+    public static final String IS_OPEN_AD = "IS_OPEN_AD";
+
 }

@@ -73,25 +73,26 @@
 
 
         <LinearLayout
-            android:id="@+id/lin_wzgl_ckgl"
+            android:id="@+id/lin_kqgg"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="7dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="15dp"
             android:layout_weight="1"
             android:background="@color/white"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_kqgg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-
-                android:drawablePadding="15dp"
-                android:gravity="center|left"
+                android:background="@drawable/bg_corners_22c1fd"
+                android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="7dp"
-                android:text="出库管理"
+                android:textColor="@color/white"
+                android:text="开启广告"
                 android:textSize="15sp" />
 
 

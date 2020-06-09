@@ -42,5 +42,12 @@ public class Constants {
         int TYPE_FOREIGN_CERT = 5;
     }
 
+    public static final String CALL_LOOP="0";
+    public static final String CALL_TIMER="1";
 
+    public static final String START_CALL = "0";//开始拨打
+    public static final String STOP_CALL = "1";//停止拨打
+
+    public static final String OPEN_AD = "0";//停止拨打
+    public static final String CLOSE_AD = "1";//停止拨打
 }

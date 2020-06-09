@@ -9,7 +9,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 
-import com.liar.testcall.ui.MainActivity;
+import com.liar.testcall.config.Constants;
 import com.liar.testcall.utils.sp.SpManager;
 import com.lodz.android.core.log.PrintLog;
 
@@ -37,11 +37,11 @@ public class CallService extends Service {
      **/
     public void callPhone(String phoneNum) {
         //判断是否拨打电话
-        if(SpManager.get().getIS_CALL().equals(MainActivity.STOP_CALL)){
+        if(SpManager.get().getIS_CALL().equals(Constants.STOP_CALL)){
             return;
         }
         //判断是否处于定时拨打电话状态
-        if(SpManager.get().getCALL_MODE().equals(MainActivity.CALL_LOOP)){
+        if(SpManager.get().getCALL_MODE().equals(Constants.CALL_LOOP)){
             return;
         }
         try {
@@ -67,7 +67,7 @@ public class CallService extends Service {
         }catch (Exception e) {
             PrintLog.d("callPhone", "拨打电话失败！：" + e.toString());
         }
-        SpManager.get().setIS_CALL(MainActivity.STOP_CALL);
+        SpManager.get().setIS_CALL(Constants.STOP_CALL);
         onDestroy();
     }
 

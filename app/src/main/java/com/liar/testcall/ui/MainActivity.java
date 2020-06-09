@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.liar.testcall.R;
+import com.liar.testcall.config.Constants;
 import com.liar.testcall.service.MainService;
 import com.liar.testcall.utils.clock.AlarmManagerUtil;
 import com.liar.testcall.utils.sp.SpManager;
@@ -43,11 +44,7 @@ public class MainActivity extends BaseActivity {
 
     public TextView tv_timer;
 
-    public static final String CALL_LOOP="0";
-    public static final String CALL_TIMER="1";
 
-    public static final String START_CALL = "0";//开始拨打
-    public static final String STOP_CALL = "1";//停止拨打
 
     private TimePickerView pvTime;
 
@@ -106,6 +103,7 @@ public class MainActivity extends BaseActivity {
 
 
 
+
     public void setViewListeners() {
         super.setListeners();
 
@@ -141,27 +139,27 @@ public class MainActivity extends BaseActivity {
                     return;
 
                 }
-                if(SpManager.get().getCALL_MODE().equalsIgnoreCase(CALL_TIMER)){
+                if(SpManager.get().getCALL_MODE().equalsIgnoreCase(Constants.CALL_TIMER)){
                     //定时拨打
                     if(TextUtils.isEmpty(SpManager.get().getCALL_TIMER_TIME())){
                         ToastUtils.showLong(getContext(),"没有设置定时拨打时间");
                         return;
                     }
                     starTimerCall();
-                    SpManager.get().setIS_CALL(START_CALL);
+                    SpManager.get().setIS_CALL(Constants.START_CALL);
                     ToastUtils.showLong(getContext(),"开始");
                     showMsg();
                     return;
                 }
 
-                if(SpManager.get().getCALL_MODE().equalsIgnoreCase(CALL_LOOP)){
+                if(SpManager.get().getCALL_MODE().equalsIgnoreCase(Constants.CALL_LOOP)){
                     //循环拨打
                     if(TextUtils.isEmpty(SpManager.get().getCALL_LOOP_TIME())){
                         ToastUtils.showLong(getContext(),"没有设置循环拨打时间");
                         return;
                     }
                     starLoopCall();
-                    SpManager.get().setIS_CALL(START_CALL);
+                    SpManager.get().setIS_CALL(Constants.START_CALL);
                     ToastUtils.showLong(getContext(),"开始");
                     showMsg();
                 }
@@ -171,7 +169,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 ToastUtils.showLong(getContext(),"停止");
-                SpManager.get().setIS_CALL(STOP_CALL);
+                SpManager.get().setIS_CALL(Constants.STOP_CALL);
                 showMsg();
             }
         });
@@ -192,7 +190,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 //设置为循环拨打
-                SpManager.get().setCALL_MODE(CALL_LOOP);
+                SpManager.get().setCALL_MODE(Constants.CALL_LOOP);
                 showMsg();
             }
         });
@@ -200,7 +198,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 //设置为定时拨打
-                SpManager.get().setCALL_MODE(CALL_TIMER);
+                SpManager.get().setCALL_MODE(Constants.CALL_TIMER);
                 showMsg();
             }
         });
@@ -233,11 +231,11 @@ public class MainActivity extends BaseActivity {
      **/
     public void showMsg(){
 
-        if(SpManager.get().getCALL_MODE().equalsIgnoreCase(CALL_LOOP)){
+        if(SpManager.get().getCALL_MODE().equalsIgnoreCase(Constants.CALL_LOOP)){
             callName="循环拨打";
             radio_loop.setChecked(true);
             radio_timer.setChecked(false);
-        }else if(SpManager.get().getCALL_MODE().equalsIgnoreCase(CALL_TIMER)){
+        }else if(SpManager.get().getCALL_MODE().equalsIgnoreCase(Constants.CALL_TIMER)){
             callName="定时拨打";
             radio_timer.setChecked(true);
             radio_loop.setChecked(false);

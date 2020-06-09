@@ -86,8 +86,6 @@ public class SpManager {
 
     }
 
-
-
     /**
      * 设置是否拨打 0拨打 1停止
      * @param isCall
@@ -99,6 +97,20 @@ public class SpManager {
     /** 获取是否拨打状态 */
     public String getIS_CALL(){
         return SharedPreferencesUtils.getString(SpConfig.IS_CALL, "");
+
+    }
+
+    /**
+     * 设置是否开启广告 0开启 1停止
+     * @param isOpenAd
+     */
+    public void setIS_OPEN_AD(String isOpenAd){
+        SharedPreferencesUtils.putString(SpConfig.IS_OPEN_AD, isOpenAd);
+    }
+
+    /** 获取是否开启广告 状态 */
+    public String getIS_OPEN_AD(){
+        return SharedPreferencesUtils.getString(SpConfig.IS_OPEN_AD, "");
 
     }
 }

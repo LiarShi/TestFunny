@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.liar.testcall.R;
+import com.liar.testcall.config.Constants;
+import com.liar.testcall.utils.sp.SpManager;
 import com.lodz.android.component.base.activity.BaseActivity;
 
 import butterknife.BindView;
@@ -27,8 +30,8 @@ public class ChoseActivty extends BaseActivity {
     LinearLayout lin_bddh;//自动拨打电话
     @BindView(R.id.lin_yxhscq)
     LinearLayout lin_yxhscq;//营销号生成器
-    @BindView(R.id.lin_wzgl_ckgl)
-    LinearLayout lin_wzgl_ckgl;//出库管理
+    @BindView(R.id.lin_kqgg)
+    LinearLayout lin_kqgg;//开启广告
     @BindView(R.id.lin_wzgl_rkcx)
     LinearLayout lin_wzgl_rkcx;//入库查询
     @BindView(R.id.lin_wzgl_kcck)
@@ -39,6 +42,9 @@ public class ChoseActivty extends BaseActivity {
     LinearLayout lin_wzgl_dcgwz;//待采购物资
     @BindView(R.id.lin_wzgl_wzpd)
     LinearLayout lin_wzgl_wzpd;//物资盘点
+
+    @BindView(R.id.tv_kqgg)
+    TextView tv_kqgg;//开启广告
 
 
     public static void start(Context context) {
@@ -72,15 +78,21 @@ public class ChoseActivty extends BaseActivity {
     }
 
     private void initTitleBar() {
-        getTitleBarLayout().setTitleName("选择");
+        getTitleBarLayout().setTitleName(getString(R.string.app_name));
         getTitleBarLayout().setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getTitleBarLayout().setElevation(0);
         }
+        getTitleBarLayout().needBackButton(false);
     }
 
     private void setView() {
 
+        if(SpManager.get().getIS_OPEN_AD().equals(Constants.OPEN_AD)){
+            tv_kqgg.setText("广告已开启");
+        }else {
+            tv_kqgg.setText("广告已关闭");
+        }
     }
 
 
@@ -107,7 +119,18 @@ public class ChoseActivty extends BaseActivity {
                 YxhscActivty.start(getContext());
             }
         });
-
+        tv_kqgg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(SpManager.get().getIS_OPEN_AD().equals(Constants.OPEN_AD)){
+                    SpManager.get().setIS_OPEN_AD(Constants.CLOSE_AD);
+                    tv_kqgg.setText("广告已关闭");
+                }else {
+                    SpManager.get().setIS_OPEN_AD(Constants.OPEN_AD);
+                    tv_kqgg.setText("广告已开启");
+                }
+            }
+        });
 
 
     }
