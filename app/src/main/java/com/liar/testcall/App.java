@@ -10,20 +10,22 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.widget.LinearLayout;
 
+import androidx.multidex.MultiDex;
+
 import com.liar.testcall.config.NotifiConfig;
 import com.liar.testcall.keeplive.onepx.ScreenReceiver;
+import com.liar.testcall.utils.ForegroundCallbacks;
 import com.lodz.android.component.base.application.BaseApplication;
 import com.lodz.android.core.cache.ACacheUtils;
 import com.lodz.android.core.log.PrintLog;
 import com.lodz.android.core.network.NetworkManager;
 import com.lodz.android.core.utils.DensityUtils;
 import com.lodz.android.core.utils.NotificationUtils;
+import com.lodz.android.core.utils.ToastUtils;
 import com.lodz.android.core.utils.UiHandler;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.multidex.MultiDex;
 
 /**
  * Created by Administrator on 2018/8/20.
@@ -41,6 +43,13 @@ public class App extends BaseApplication {
         super.attachBaseContext(base);
         //多dex加载机制
         MultiDex.install(this);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        initAppStatusListener();
     }
 
     @Override
@@ -156,11 +165,27 @@ public class App extends BaseApplication {
     protected void beforeExit() {
 
 
-
         UiHandler.destroy();
         NetworkManager.get().release(this);// 释放网络管理资源
         NetworkManager.get().clearNetworkListener();// 清除所有网络监听器
         System.exit(0);// 退出整个应用
+    }
+
+
+    /** 前台后台切换监听 */
+    private void initAppStatusListener() {
+        ForegroundCallbacks.init(this).addListener(new ForegroundCallbacks.Listener() {
+            @Override
+            public void onBecameForeground() {
+                ToastUtils.showShort(get(),"++++App进入前台++++");
+            }
+
+            @Override
+            public void onBecameBackground() {
+                ToastUtils.showShort(get(),"----App退至后台----");
+
+            }
+        });
     }
 
 

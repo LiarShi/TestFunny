@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">拨打电话</string>
+    <string name="app_name">闲得蛋疼APP</string>
 
     <!-- 启动页 -->
     <string name="splash_check_permission_tips">请在权限页面打开应用所有权限</string>
