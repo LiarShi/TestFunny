@@ -39,10 +39,10 @@ private void initAppStatusListener() {
         }
 
     });
-
 }
 
 这个方法搬运了CSDN博主「火炎焱燚-」代码
+
 原文链接：https://blog.csdn.net/zheng_jiao/java/article/details/94357414
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
