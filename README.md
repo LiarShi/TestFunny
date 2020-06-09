@@ -15,34 +15,33 @@
 添加了 ForegroundCallbacks类，用于监听app前台后台切换
 
 在自定义Application的onCreate中添加监听方法
+
 JAVA:
+
 /** 前台后台切换监听 */
+
 private void initAppStatusListener() {
+
     ForegroundCallbacks.init(this).addListener(new ForegroundCallbacks.Listener() {
+
         @Override
         public void onBecameForeground() {
+
             ToastUtils.showShort(get(),"++++App进入前台++++");
+
         }
+
         @Override
+
         public void onBecameBackground() {
+
             ToastUtils.showShort(get(),"----App退至后台----");
+
         }
+
     });
-}
 
-Kotlin:
-/** 前台后台切换监听 */
-private fun initAppStatusListener() {
-    ForegroundCallbacks.init(this).addListener(object : ForegroundCallbacks.Listener {
-        override fun onBecameForeground() {
-            Toast.makeText(context, "++++App进入前台++++", Toast.LENGTH_SHORT).show()
-        }
-        override fun onBecameBackground() {
-            Toast.makeText(context, "----App退至后台----", Toast.LENGTH_SHORT).show()
-        }
-    })
 }
-
 这个方法搬运了CSDN博主「火炎焱燚-」代码
 原文链接：https://blog.csdn.net/zheng_jiao/java/article/details/94357414
 
